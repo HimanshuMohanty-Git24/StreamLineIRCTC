@@ -1,9 +1,12 @@
 # 🚄 IRCTC Real-Time Data Pipeline on Google Cloud
 
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/d21ac524-d208-48c3-80a5-3b457b4486f0" alt="Project Logo" width="200"/>
+</p>
+
 This project simulates a Change Data Capture (CDC)-like real-time data pipeline for a railway booking system (inspired by IRCTC) using GCP-native services. It demonstrates event publishing, streaming, transformation, and real-time analytics.
 
-![WhatsApp Image 2025-05-27 at 12 19 38 PM](https://github.com/user-attachments/assets/d4b25d4a-d8d6-4913-938b-caf8ee087b38)
-
+![Architecture Diagram](https://github.com/user-attachments/assets/d4b25d4a-d8d6-4913-938b-caf8ee087b38)
 
 ---
 
@@ -19,11 +22,13 @@ This project simulates a Change Data Capture (CDC)-like real-time data pipeline 
 
 ## 🧰 Tech Stack
 
-* **Google Cloud Pub/Sub** – Event ingestion
-* **Google Dataflow** – Stream processing (Apache Beam + Python UDF)
-* **Google BigQuery** – Real-time storage and analytics
-* **Google Cloud Storage** – Stores transformation scripts
-* **Python** – Data generation and transformation logic
+| Logo                                                                                              | Service                   | Purpose                                      |
+| ------------------------------------------------------------------------------------------------- | ------------------------- | -------------------------------------------- |
+| <img src="https://c0.klipartz.com/pngpicture/115/315/gratis-png-plataforma-de-nube-de-google-publicar-suscribir-patrones-de-computacion-en-la-nube-de-bigquery-google.png" alt="PubSub" width="40"/>     | **Google Cloud Pub/Sub**  | Real-time message ingestion                  |
+| <img src="https://www.vhv.rs/dpng/d/615-6150272_google-dataflow-logo-hd-png-download.png" alt="Dataflow" width="40"/> | **Google Cloud Dataflow** | Stream processing (Apache Beam + Python UDF) |
+| <img src="https://static.cdnlogo.com/logos/g/44/google-bigquery.svg" alt="BigQuery" width="40"/> | **Google BigQuery**       | Analytics-ready data warehouse               |
+| <img src="https://w7.pngwing.com/pngs/799/196/png-transparent-google-cloud-platform-google-storage-amazon-s3-cloud-computing-cloud-computing-blue-angle-cloud.png" alt="GCS" width="40"/>       | **Google Cloud Storage**  | Stores UDF Python script                     |
+| 🐍                                                                                                | **Python**                | Used for mock data generation and UDF logic  |
 
 ---
 
@@ -55,9 +60,8 @@ gcloud pubsub topics create irctc-data
 gsutil cp transform_udf.py gs://your-bucket-name/pubsub-to-bigquery/
 ```
 
-**📷 Screenshot: GCS Bucket**
-![WhatsApp Image 2025-05-27 at 12 19 52 PM (2)](https://github.com/user-attachments/assets/61542455-821d-4cf9-b969-1ab7d0b0c6de)
-
+📷 **Screenshot: GCS Bucket**
+![GCS Bucket](https://github.com/user-attachments/assets/61542455-821d-4cf9-b969-1ab7d0b0c6de)
 
 ### 5. Deploy Dataflow Job (Streaming)
 
@@ -67,9 +71,8 @@ Use the Google Cloud Console or CLI to create a Dataflow job with:
 * Output: BigQuery table
 * UDF location: GCS path to `transform_udf.py`
 
-**📷 Screenshot: Dataflow Job**
-![WhatsApp Image 2025-05-27 at 12 19 52 PM](https://github.com/user-attachments/assets/7bad43c7-d379-45d4-b5c8-0d8b64794c87)
-
+📷 **Screenshot: Dataflow Job**
+![Dataflow Job](https://github.com/user-attachments/assets/7bad43c7-d379-45d4-b5c8-0d8b64794c87)
 
 ---
 
@@ -85,9 +88,8 @@ This script will:
 * Encode as JSON
 * Publish to `irctc-data` topic on Pub/Sub
 
-**📷 Screenshot: CLI Output**
-![WhatsApp Image 2025-05-27 at 12 19 52 PM (1)](https://github.com/user-attachments/assets/fe8e572e-5994-464b-a8df-701173463786)
-
+📷 **Screenshot: CLI Output**
+![CLI Output](https://github.com/user-attachments/assets/fe8e572e-5994-464b-a8df-701173463786)
 
 ---
 
@@ -111,11 +113,9 @@ CREATE TABLE irctc_dwh.irctc_stream_tb (
 );
 ```
 
-**📷 Screenshot: BigQuery Console**
-![WhatsApp Image 2025-05-27 at 12 19 52 PM (3)](https://github.com/user-attachments/assets/7a42645f-0b4d-41b2-83ae-233707d53144)
-![WhatsApp Image 2025-05-27 at 12 19 51 PM](https://github.com/user-attachments/assets/93d502e5-0724-4484-ba5f-48e9d287983d)
-
-
+📷 **Screenshots: BigQuery Console**
+![BigQuery Preview 1](https://github.com/user-attachments/assets/7a42645f-0b4d-41b2-83ae-233707d53144)
+![BigQuery Preview 2](https://github.com/user-attachments/assets/93d502e5-0724-4484-ba5f-48e9d287983d)
 
 ---
 
@@ -151,6 +151,7 @@ Connect BigQuery table to:
 
 ## 📎 References
 
-* [Pub/Sub Docs](https://cloud.google.com/pubsub/docs)
-* [Dataflow Docs](https://cloud.google.com/dataflow/docs)
-* [BigQuery Docs](https://cloud.google.com/bigquery/docs)
+* [Google Cloud Pub/Sub Docs](https://cloud.google.com/pubsub/docs)
+* [Google Cloud Dataflow Docs](https://cloud.google.com/dataflow/docs)
+* [Google BigQuery Docs](https://cloud.google.com/bigquery/docs)
+* [Cloud Storage Docs](https://cloud.google.com/storage/docs)
